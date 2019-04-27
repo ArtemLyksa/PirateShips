@@ -11,11 +11,13 @@ import UIKit
 class ShipsListCoordinator: Coordinator {
     
     let presenter: UINavigationController
-    let viewController: UIViewController
+    let viewController: ShipsListViewController
     
     init(presenter: UINavigationController, networkService: NetworkService) {
         self.presenter = presenter
-        viewController = BaseViewController()
+        viewController = ShipsListViewController.instantiate() as! ShipsListViewController
+        
+        viewController.viewModel = ShipsListViewModel(networkService: networkService)
     }
     
     func start() {

@@ -9,5 +9,10 @@
 import Foundation
 
 struct Ship: Decodable {
+    var id: Double
     var title: String?
+    var description: String?
+    var price: Int
+    var image: String
+    var greeting_type: String?
 }

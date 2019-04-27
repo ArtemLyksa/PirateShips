@@ -26,10 +26,11 @@ protocol NetworkProtocol {
         self.requestRealizer = requestRealizer
     }
     
-    func getVehicles() -> Observable<[Ship]> {
+    func getShips() -> Observable<[Ship]> {
         return requestRealizer.getShips()
             .subscribeOn(scheduler)
-            .toResult(type: [Ship].self)
+            .toResult(type: GetShipsResponse.self)
+            .map({ $0.ships.compactMap({ $0 }) })
     }
 }
 
