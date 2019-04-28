@@ -13,7 +13,7 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
     
-    func height(for width: CGFloat, font: UIFont) -> CGFloat {
+    func height(for width: CGFloat, and font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
         let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading],
                                             attributes: [NSAttributedString.Key.font: font], context: nil)

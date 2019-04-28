@@ -17,12 +17,6 @@ target 'PirateShips' do
   
   # Network
   pod 'RxAlamofire'
-
-  # DataBase
-  pod 'RxRealm'
-  
-  # Spinner overlay
-  pod 'JGProgressHUD'
   
   # Tests
   target 'PirateShipsTests' do

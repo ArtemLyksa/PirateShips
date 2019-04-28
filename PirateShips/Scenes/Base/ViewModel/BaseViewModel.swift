@@ -20,8 +20,10 @@ class BaseViewModel {
     
     //Error handling
     var error: Observable<Error?> {
-        return errorSubject.do(onNext: { [weak self] _ in
-            self?.isLoadingSubject.onNext(false)
+        return errorSubject.do(onNext: { [weak self] error in
+            if error != nil {
+                self?.isLoadingSubject.onNext(false)
+            }
         }).asObservable()
     }
     var errorSubject = BehaviorSubject<Error?>(value: nil)

@@ -15,22 +15,17 @@ class ShipsListViewModel: BaseViewModel {
     var shipsListModelObservable: Observable<[ShipsListModel]> {
         return shipsListModelRelay.asObservable()
     }
-    
-    var displayedIndex: Int = 0 {
-        didSet {
-            getImageForShip(at: displayedIndex)
-        }
-    }
+
+    let displayedIndex = PublishSubject<Int>()
     
     private let networkService: NetworkService
     private let imageHandler: ImageHandlerFacade
     
-    let shipsListModelRelay = BehaviorRelay<[ShipsListModel]>(value: [])
+    private let shipsListModelRelay = BehaviorRelay<[ShipsListModel]>(value: [])
     private let shipsListRelay = BehaviorRelay<[Ship]>(value: [])
     
-    private var images: [String: UIImage] = [:]
-    
     init(networkService: NetworkService) {
+        
         self.networkService = networkService
         self.imageHandler = ImageHandlerFacade(networkService: networkService)
         
@@ -41,20 +36,29 @@ class ShipsListViewModel: BaseViewModel {
     }
     
     private func setupBindings() {
+        
         shipsListRelay.map({ [ShipsListModel(ships: $0)] })
             .bind(to: shipsListModelRelay)
             .disposed(by: disposeBag)
+        
+        displayedIndex.asObservable()
+            .subscribe(onNext: { [weak self] index in
+                self?.getImageForShip(at: index)
+            }).disposed(by: disposeBag)
     }
     
     private func getShips() {
+        
         isLoadingSubject.onNext(true)
         
-        networkService.getShips().subscribe(onNext: { [weak self] ships in
-            self?.isLoadingSubject.onNext(false)
-            self?.shipsListRelay.accept(ships)
-        }, onError: { [weak self]  error in
-            self?.errorSubject.onNext(error)
-        }).disposed(by: disposeBag)
+        networkService.getShips()
+            .delay(15.0, scheduler: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] ships in
+                self?.isLoadingSubject.onNext(false)
+                self?.shipsListRelay.accept(ships)
+            }, onError: { [weak self]  error in
+                self?.errorSubject.onNext(error)
+            }).disposed(by: disposeBag)
     }
     
     private func getImageForShip(at index: Int) {
@@ -83,8 +87,27 @@ class ShipsListViewModel: BaseViewModel {
         let ship = shipsListRelay.value[index]
         
         var displayedItems = displayedListModel.items
+        
+        let image = image ?? UIImage(named: .no_image)
         displayedItems[index] = ShipListItem(ship: ship, image: image, isLoading: false)
         shipsListModelRelay.accept([ShipsListModel(original: displayedListModel, items: displayedItems)])
     }
     
+}
+
+extension ShipsListViewModel: PinterestLayoutDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        heightFor indexPath: IndexPath,
+                        for width: CGFloat) -> CGFloat {
+        
+        guard let shipItem = shipsListModelRelay.value.first?.items[indexPath.row] else {
+            return 0.0
+        }
+        let font = UIFont.systemFont(ofSize: 17.0)
+        
+        return shipItem.title.height(for: width, and: font) +
+            shipItem.price.height(for: width, and: font) +
+        160.0
+    }
 }

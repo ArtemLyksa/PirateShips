@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import JGProgressHUD
 
 extension BaseViewController {
     
@@ -18,19 +17,20 @@ extension BaseViewController {
     }
     
     private var overlayViewAlpha: CGFloat {
-        return 0.7
+        return 0.4
     }
     
     func setupSpinner(drivenBy observable: Observable<Bool>) {
-        
-        let progressHud = JGProgressHUD(style: .extraLight)
-        progressHud.parallaxMode = .alwaysOff
-        progressHud.indicatorView = JGProgressHUDIndeterminateIndicatorView()
         
         let overlayView = UIView(frame: view.bounds)
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(overlayViewAlpha)
         overlayView.isHidden = true
         view.addSubview(overlayView)
+        
+        let activityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.color = UIColor.black
+        overlayView.addSubview(activityIndicatorView)
         
         observable.distinctUntilChanged().observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] isBusy in
@@ -38,14 +38,16 @@ extension BaseViewController {
                 guard let strongSelf = self else { return }
                 
                 if isBusy {
+                    activityIndicatorView.frame = strongSelf.view.bounds
                     strongSelf.view.isUserInteractionEnabled = false
                     strongSelf.view.bringSubviewToFront(overlayView)
                     strongSelf.easeViewIn(overlayView)
-                    progressHud.show(in: strongSelf.view)
-                    strongSelf.view.bringSubviewToFront(progressHud)
+                    
+                    activityIndicatorView.isHidden = false
+                    activityIndicatorView.startAnimating()
                 } else {
                     strongSelf.view.isUserInteractionEnabled = true
-                    progressHud.dismiss()
+                    activityIndicatorView.stopAnimating()
                     strongSelf.easeViewOut(overlayView)
                 }
                 
@@ -54,7 +56,7 @@ extension BaseViewController {
                     guard let strongSelf = self else { return }
                     
                     strongSelf.view.isUserInteractionEnabled = true
-                    progressHud.dismiss()
+                    activityIndicatorView.stopAnimating()
                     strongSelf.easeViewOut(overlayView)
                     
             }).disposed(by: disposeBag)

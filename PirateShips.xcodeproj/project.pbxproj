@@ -19,6 +19,7 @@
 		FE1312FF2274CEA6000264CC /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1312FE2274CEA6000264CC /* PinterestLayout.swift */; };
 		FEAD176322758FDE000157C1 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD176222758FDE000157C1 /* FileService.swift */; };
 		FEAD176622759ABA000157C1 /* ImageHandlerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD176522759ABA000157C1 /* ImageHandlerFacade.swift */; };
+		FEAD17682275BCBC000157C1 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD17672275BCBC000157C1 /* UIImage+extensions.swift */; };
 		FEDB9C1F227446D300206F4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB9C1E227446D300206F4B /* AppDelegate.swift */; };
 		FEDB9C24227446D300206F4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDB9C22227446D300206F4B /* Main.storyboard */; };
 		FEDB9C26227446D500206F4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDB9C25227446D500206F4B /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		FE1312FE2274CEA6000264CC /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		FEAD176222758FDE000157C1 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		FEAD176522759ABA000157C1 /* ImageHandlerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandlerFacade.swift; sourceTree = "<group>"; };
+		FEAD17672275BCBC000157C1 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
 		FEDB9C1B227446D300206F4B /* PirateShips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PirateShips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEDB9C1E227446D300206F4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEDB9C23227446D300206F4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				FEDB9C8B2274530100206F4B /* BaseViewController+extensions.swift */,
 				FEDB9C6822744FA800206F4B /* UIViewController+extensions.swift */,
 				FEDB9C6A22744FBF00206F4B /* String+extensions.swift */,
+				FEAD17672275BCBC000157C1 /* UIImage+extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -499,13 +502,9 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PirateShips/Pods-PirateShips-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -514,13 +513,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -630,6 +625,7 @@
 				FEDB9C712274503400206F4B /* URLRouter.swift in Sources */,
 				FEDB9C8E2274532700206F4B /* ShipsListCoordinator.swift in Sources */,
 				FEDB9C6322744F1300206F4B /* Coordinator.swift in Sources */,
+				FEAD17682275BCBC000157C1 /* UIImage+extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,30 +36,17 @@ class ShipsListViewController: BaseViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource!))
             .disposed(by: disposeBag)
         
+        
         collectionView.rx.willDisplayCell
-        .subscribe(onNext: { [weak self] _, indexPath in
-            self?.viewModel.displayedIndex = indexPath.row
-        }).disposed(by: disposeBag)
+            .map({ $1.row })
+            .bind(to: viewModel.displayedIndex)
+            .disposed(by: disposeBag)
         
         
         if let layout = collectionView.collectionViewLayout as? PinterestLayout {
-            layout.delegate = self
+            layout.delegate = viewModel
         }
     }
 }
 
-extension ShipsListViewController: PinterestLayoutDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        heightFor indexPath: IndexPath,
-                        for width: CGFloat) -> CGFloat {
-        
-        let shipItem = viewModel.shipsListModelRelay.value.first?.items[indexPath.row]
-        let font = UIFont.systemFont(ofSize: 17.0)
-        
-        return shipItem!.title.height(for: width, font: font) +
-               shipItem!.price.height(for: width, font: font) +
-               160.0
-    }
-}
 
