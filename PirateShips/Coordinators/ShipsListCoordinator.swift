@@ -6,12 +6,15 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 
 class ShipsListCoordinator: Coordinator {
     
-    let presenter: UINavigationController
-    let viewController: ShipsListViewController
+    private let presenter: UINavigationController
+    private let viewController: ShipsListViewController
+    
+    private let disposeBag = DisposeBag()
+    private var shipDetailsCoordinator: ShipDetailsCoordinator?
     
     init(presenter: UINavigationController, networkService: NetworkService) {
         self.presenter = presenter
@@ -20,6 +23,13 @@ class ShipsListCoordinator: Coordinator {
         let viewModel = ShipsListViewModel(networkService: networkService)
         viewController.viewModel = viewModel
         viewController.setupBaseObservables(viewModel)
+        
+        //Handle selected cell
+        viewModel.selectedShipObservable.subscribe(onNext: { [weak self] ship, image in
+            self?.shipDetailsCoordinator = ShipDetailsCoordinator(presenter: presenter, ship: ship, shipImage: image!)
+            self?.shipDetailsCoordinator?.start()
+        }).disposed(by: disposeBag)
+        
     }
     
     func start() {

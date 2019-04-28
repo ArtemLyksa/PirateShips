@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class MainCoordinator: Coordinator {
+struct MainCoordinator: Coordinator {
     
     private let rootViewController: UINavigationController
     private let networkService = NetworkService(requestRealizer: RequestRealizer())

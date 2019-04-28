@@ -6,7 +6,6 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-import UIKit
 import RxCocoa
 import RxSwift
 
@@ -15,8 +14,19 @@ class ShipsListViewModel: BaseViewModel {
     var shipsListModelObservable: Observable<[ShipsListModel]> {
         return shipsListModelRelay.asObservable()
     }
+    
+    var selectedShipObservable: Observable<(Ship, UIImage?)> {
+        
+        return selectedIndex.map({ [unowned self] index in
+            let ship = self.shipsListRelay.value[index]
+            let image = self.shipsListModelRelay.value.first?.items[index].image
+            
+            return (ship, image)
+        })
+    }
 
     let displayedIndex = PublishSubject<Int>()
+    let selectedIndex = PublishSubject<Int>()
     
     private let networkService: NetworkService
     private let imageHandler: ImageHandlerFacade
@@ -70,11 +80,12 @@ class ShipsListViewModel: BaseViewModel {
         
         let ship = shipsListRelay.value[index]
         
-        imageHandler.getImage(path: ship.image).subscribe(onNext: { [weak self]  image in
-            self?.handle(image: image, at: index)
-        }, onError: { [weak self] error in
-            self?.errorSubject.onNext(error)
-        }).disposed(by: disposeBag)
+        imageHandler.getImage(path: ship.image)
+            .subscribe(onNext: { [weak self]  image in
+                self?.handle(image: image, at: index)
+            }, onError: { [weak self] error in
+                self?.errorSubject.onNext(error)
+            }).disposed(by: disposeBag)
     }
     
     private func handle(image: UIImage?, at index: Int) {
@@ -96,6 +107,14 @@ class ShipsListViewModel: BaseViewModel {
 
 extension ShipsListViewModel: PinterestLayoutDelegate {
     
+    private var font: UIFont {
+        return UIFont.systemFont(ofSize: 17.0)
+    }
+    
+    private var imageHeight: CGFloat {
+        return 160.0
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         heightFor indexPath: IndexPath,
                         for width: CGFloat) -> CGFloat {
@@ -103,10 +122,9 @@ extension ShipsListViewModel: PinterestLayoutDelegate {
         guard let shipItem = shipsListModelRelay.value.first?.items[indexPath.row] else {
             return 0.0
         }
-        let font = UIFont.systemFont(ofSize: 17.0)
         
         return shipItem.title.height(for: width, and: font) +
-            shipItem.price.height(for: width, and: font) +
-        160.0
+               shipItem.price.height(for: width, and: font) +
+               imageHeight
     }
 }

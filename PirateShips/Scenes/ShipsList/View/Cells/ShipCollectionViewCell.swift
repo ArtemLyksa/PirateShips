@@ -17,10 +17,7 @@ class ShipCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize.zero
+        dropShadow()
     }
 
     func configure(with item: ShipListItem) {
@@ -35,8 +32,10 @@ class ShipCollectionViewCell: UICollectionViewCell {
     private func setProgressHud(hidden: Bool) {
         
         if hidden {
+            isUserInteractionEnabled = true
             activityIndicatorView.stopAnimating()
         } else {
+            isUserInteractionEnabled = false
             activityIndicatorView.startAnimating()
         }
     }
