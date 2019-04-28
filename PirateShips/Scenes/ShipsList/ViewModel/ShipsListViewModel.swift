@@ -52,7 +52,6 @@ class ShipsListViewModel: BaseViewModel {
         isLoadingSubject.onNext(true)
         
         networkService.getShips()
-            .delay(15.0, scheduler: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] ships in
                 self?.isLoadingSubject.onNext(false)
                 self?.shipsListRelay.accept(ships)

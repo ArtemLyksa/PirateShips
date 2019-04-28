@@ -20,7 +20,7 @@ class ShipsListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupObservables()
+        setupObservables()        
     }
     
     private func setupObservables() {

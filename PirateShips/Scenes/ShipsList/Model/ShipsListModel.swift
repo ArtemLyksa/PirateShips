@@ -42,7 +42,7 @@ struct ShipListItem: IdentifiableType, Equatable {
     
     init(ship: Ship, image: UIImage? = nil, isLoading: Bool = true) {
         self.id = ship.id
-        self.title = ship.title ?? ""
+        self.title = ship.title ?? "No title".localized
         self.price = "\(ship.price)"
         self.image = image
         self.isLoading = isLoading
