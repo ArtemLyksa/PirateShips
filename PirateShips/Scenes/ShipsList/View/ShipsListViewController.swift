@@ -14,7 +14,7 @@ import RxDataSources
 class ShipsListViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var dataSource: RxCollectionViewSectionedReloadDataSource<ShipsListModel>?
+    private var dataSource: RxCollectionViewSectionedAnimatedDataSource<ShipsListModel>?
     
     var viewModel: ShipsListViewModel!
     
@@ -25,7 +25,7 @@ class ShipsListViewController: BaseViewController {
     
     private func setupObservables() {
         
-        dataSource = RxCollectionViewSectionedReloadDataSource<ShipsListModel>(
+        dataSource = RxCollectionViewSectionedAnimatedDataSource<ShipsListModel>(
             configureCell: { dataSource, collectionView, indexPath, item in
                 let cell = collectionView.getCell(ofType: ShipCollectionViewCell.self, for: indexPath)
                 cell.configure(with: item)
@@ -36,25 +36,30 @@ class ShipsListViewController: BaseViewController {
             .bind(to: collectionView.rx.items(dataSource: dataSource!))
             .disposed(by: disposeBag)
         
-        collectionView.rx
-            .setDelegate(self)
-            .disposed(by: disposeBag)
+        collectionView.rx.willDisplayCell
+        .subscribe(onNext: { [weak self] _, indexPath in
+            self?.viewModel.displayedIndex = indexPath.row
+        }).disposed(by: disposeBag)
+        
+        
+        if let layout = collectionView.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+        }
     }
 }
 
-
-extension ShipsListViewController: UICollectionViewDelegateFlowLayout {
+extension ShipsListViewController: PinterestLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        heightFor indexPath: IndexPath,
+                        for width: CGFloat) -> CGFloat {
         
-        var width = collectionView.frame.width
+        let shipItem = viewModel.shipsListModelRelay.value.first?.items[indexPath.row]
+        let font = UIFont.systemFont(ofSize: 17.0)
         
-        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
-            width -= flowLayout.minimumLineSpacing
-        }
-        
-        return CGSize(width: width, height: collectionView.frame.height)
+        return shipItem!.title.height(for: width, font: font) +
+               shipItem!.price.height(for: width, font: font) +
+               160.0
     }
 }
+

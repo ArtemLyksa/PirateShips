@@ -9,10 +9,14 @@
 import Foundation
 import RxDataSources
 
-struct ShipsListModel: SectionModelType {
+struct ShipsListModel: AnimatableSectionModelType {
     typealias Item = ShipListItem
     
     var items: [Item]
+    
+    var identity: String {
+        return "ShipsListModel"
+    }
     
     init(original: ShipsListModel, items: [Item]) {
         self = original
@@ -24,13 +28,24 @@ struct ShipsListModel: SectionModelType {
     }
 }
 
-struct ShipListItem {
+struct ShipListItem: IdentifiableType, Equatable {
+    
+    let id: Double
     let title: String
     let price: String
     var image: UIImage?
+    var isLoading: Bool
     
-    init(ship: Ship) {
+    var identity: String {
+        return "\(id)"
+    }
+    
+    init(ship: Ship, image: UIImage? = nil, isLoading: Bool = true) {
+        self.id = ship.id
         self.title = ship.title ?? ""
         self.price = "\(ship.price)"
+        self.image = image
+        self.isLoading = isLoading
     }
+    
 }

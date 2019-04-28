@@ -14,12 +14,13 @@ enum URLRouter: URLRequestConvertible {
     private static let baseUrl = URL(string: "https://assets.shpock.com/mobile/interview-test/pirateships")!
     
     case getShips
+    case getImage(url: URL)
     
     func asURLRequest() throws -> URLRequest {
         
         var httpMethod: HTTPMethod {
             switch self {
-            case .getShips:
+            case .getShips, .getImage:
                 return .get
             }
         }
@@ -28,12 +29,14 @@ enum URLRouter: URLRequestConvertible {
             switch self {
             case .getShips:
                 return URLRouter.baseUrl
+            case .getImage(let url):
+                return url
             }
         }
         
         var params: Parameters? {
             switch self {
-            case .getShips:
+            case .getShips, .getImage:
                 return nil
             }
         }

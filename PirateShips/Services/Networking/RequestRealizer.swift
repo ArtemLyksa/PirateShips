@@ -17,6 +17,10 @@ struct RequestRealizer: NetworkProtocol {
         return performRequest(with: .getShips)
     }
     
+    func getImage(url: URL) -> RequestResult {
+        return performRequest(with: .getImage(url: url))
+    }
+    
     private func performRequest(with route: URLRouter) -> RequestResult {
         return RxAlamofire.requestData(route).map({ $0.1 })
     }

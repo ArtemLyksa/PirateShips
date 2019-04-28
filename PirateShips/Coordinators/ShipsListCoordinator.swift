@@ -17,7 +17,9 @@ class ShipsListCoordinator: Coordinator {
         self.presenter = presenter
         viewController = ShipsListViewController.instantiate() as! ShipsListViewController
         
-        viewController.viewModel = ShipsListViewModel(networkService: networkService)
+        let viewModel = ShipsListViewModel(networkService: networkService)
+        viewController.viewModel = viewModel
+        viewController.setupBaseObservables(viewModel)
     }
     
     func start() {

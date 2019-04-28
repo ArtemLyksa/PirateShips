@@ -12,6 +12,7 @@ import Alamofire
 protocol NetworkProtocol {
     
     func getShips() -> RequestResult
+    func getImage(url: URL) -> RequestResult
 }
 
 
@@ -31,6 +32,12 @@ protocol NetworkProtocol {
             .subscribeOn(scheduler)
             .toResult(type: GetShipsResponse.self)
             .map({ $0.ships.compactMap({ $0 }) })
+    }
+    
+    func getImage(url: URL) -> Observable<UIImage?> {
+        return requestRealizer.getImage(url: url)
+            .subscribeOn(scheduler)
+            .map({ UIImage(data: $0) })
     }
 }
 
