@@ -36,4 +36,14 @@ struct FileService {
             return nil
         }
     }
+    
+    static func removeSavedImage(named: String) {
+        
+        do {
+            let directory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            try FileManager.default.removeItem(at: directory)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
 }

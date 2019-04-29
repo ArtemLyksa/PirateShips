@@ -17,6 +17,8 @@
 		FE1312F92274587F000264CC /* ShipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE1312F72274587F000264CC /* ShipCollectionViewCell.xib */; };
 		FE1312FC22745EDC000264CC /* GetShipsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1312FB22745EDC000264CC /* GetShipsResponse.swift */; };
 		FE1312FF2274CEA6000264CC /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1312FE2274CEA6000264CC /* PinterestLayout.swift */; };
+		FE1B165E2276E67500D3520C /* Observable+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1B165D2276E67500D3520C /* Observable+extensions.swift */; };
+		FE1B16602276E6B000D3520C /* FileServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1B165F2276E6B000D3520C /* FileServiceTests.swift */; };
 		FEAD176322758FDE000157C1 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD176222758FDE000157C1 /* FileService.swift */; };
 		FEAD176622759ABA000157C1 /* ImageHandlerFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD176522759ABA000157C1 /* ImageHandlerFacade.swift */; };
 		FEAD17682275BCBC000157C1 /* UIImage+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAD17672275BCBC000157C1 /* UIImage+extensions.swift */; };
@@ -29,7 +31,7 @@
 		FEDB9C24227446D300206F4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDB9C22227446D300206F4B /* Main.storyboard */; };
 		FEDB9C26227446D500206F4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEDB9C25227446D500206F4B /* Assets.xcassets */; };
 		FEDB9C29227446D500206F4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEDB9C27227446D500206F4B /* LaunchScreen.storyboard */; };
-		FEDB9C5822744E3F00206F4B /* PirateShipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB9C5722744E3F00206F4B /* PirateShipsTests.swift */; };
+		FEDB9C5822744E3F00206F4B /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB9C5722744E3F00206F4B /* NetworkServiceTests.swift */; };
 		FEDB9C6122744ED700206F4B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB9C6022744ED700206F4B /* MainCoordinator.swift */; };
 		FEDB9C6322744F1300206F4B /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB9C6222744F1300206F4B /* Coordinator.swift */; };
 		FEDB9C6622744F4E00206F4B /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB9C6522744F4E00206F4B /* GenericError.swift */; };
@@ -70,6 +72,8 @@
 		FE1312F72274587F000264CC /* ShipCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShipCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE1312FB22745EDC000264CC /* GetShipsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShipsResponse.swift; sourceTree = "<group>"; };
 		FE1312FE2274CEA6000264CC /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
+		FE1B165D2276E67500D3520C /* Observable+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extensions.swift"; sourceTree = "<group>"; };
+		FE1B165F2276E6B000D3520C /* FileServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceTests.swift; sourceTree = "<group>"; };
 		FEAD176222758FDE000157C1 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		FEAD176522759ABA000157C1 /* ImageHandlerFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHandlerFacade.swift; sourceTree = "<group>"; };
 		FEAD17672275BCBC000157C1 /* UIImage+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extensions.swift"; sourceTree = "<group>"; };
@@ -89,7 +93,7 @@
 		FEDB9C28227446D500206F4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FEDB9C2A227446D500206F4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEDB9C5522744E3F00206F4B /* PirateShipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PirateShipsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FEDB9C5722744E3F00206F4B /* PirateShipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PirateShipsTests.swift; sourceTree = "<group>"; };
+		FEDB9C5722744E3F00206F4B /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		FEDB9C5922744E3F00206F4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEDB9C6022744ED700206F4B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		FEDB9C6222744F1300206F4B /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -254,7 +258,9 @@
 		FEDB9C5622744E3F00206F4B /* PirateShipsTests */ = {
 			isa = PBXGroup;
 			children = (
-				FEDB9C5722744E3F00206F4B /* PirateShipsTests.swift */,
+				FE1B165D2276E67500D3520C /* Observable+extensions.swift */,
+				FEDB9C5722744E3F00206F4B /* NetworkServiceTests.swift */,
+				FE1B165F2276E6B000D3520C /* FileServiceTests.swift */,
 				FEDB9C5922744E3F00206F4B /* Info.plist */,
 			);
 			path = PirateShipsTests;
@@ -662,7 +668,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEDB9C5822744E3F00206F4B /* PirateShipsTests.swift in Sources */,
+				FE1B16602276E6B000D3520C /* FileServiceTests.swift in Sources */,
+				FE1B165E2276E67500D3520C /* Observable+extensions.swift in Sources */,
+				FEDB9C5822744E3F00206F4B /* NetworkServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -802,7 +810,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
