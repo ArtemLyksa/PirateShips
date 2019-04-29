@@ -6,17 +6,18 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 
 class BaseViewModel {
     
+    let isLoadingSubject = BehaviorSubject(value: false)
+    let errorSubject = BehaviorSubject<Error?>(value: nil)
     let disposeBag = DisposeBag()
     
+    //Spinner 
     var isLoading: Observable<Bool> {
         return isLoadingSubject.asObservable()
     }
-    var isLoadingSubject = BehaviorSubject(value: false)
     
     //Error handling
     var error: Observable<Error?> {
@@ -26,7 +27,5 @@ class BaseViewModel {
             }
         }).asObservable()
     }
-    var errorSubject = BehaviorSubject<Error?>(value: nil)
-    
 }
 

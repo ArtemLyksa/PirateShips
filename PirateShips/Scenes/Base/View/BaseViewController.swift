@@ -6,7 +6,6 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-import UIKit
 import RxSwift
 
 class BaseViewController: UIViewController {
@@ -22,5 +21,4 @@ class BaseViewController: UIViewController {
             .bind(to: rx.errorAlert)
             .disposed(by: disposeBag)
     }
-    
 }

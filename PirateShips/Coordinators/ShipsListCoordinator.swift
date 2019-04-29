@@ -6,7 +6,6 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-
 import RxSwift
 
 class ShipsListCoordinator: Coordinator {
@@ -30,7 +29,6 @@ class ShipsListCoordinator: Coordinator {
             self?.shipDetailsCoordinator = ShipDetailsCoordinator(presenter: presenter, ship: ship, shipImage: image!)
             self?.shipDetailsCoordinator?.start()
         }).disposed(by: disposeBag)
-        
     }
     
     func start() {

@@ -6,7 +6,6 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-import UIKit
 import RxSwift
 
 struct MainCoordinator: Coordinator {
@@ -33,5 +32,4 @@ struct MainCoordinator: Coordinator {
         
         shipsListCoordinator.start()
     }
-    
 }

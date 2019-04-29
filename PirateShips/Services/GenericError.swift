@@ -22,7 +22,7 @@ enum GenericError: Error {
         case .cannotParseData:
             return "Cannot parse response. Please, contact support".localized
         case .wrongImageURL(let incomingURL):
-            return "Cannot create image URL. Incoming URL: \(incomingURL)".localized
+            return "Cannot create image URL. Incoming URL: ".localized + incomingURL
         case .generic(let error):
             let nserror = error as NSError
             return nserror.localizedDescription

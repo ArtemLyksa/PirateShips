@@ -15,7 +15,6 @@ protocol NetworkProtocol {
     func getImage(url: URL) -> RequestResult
 }
 
-
 @objc class NetworkService: NSObject {
     
     private let requestRealizer: NetworkProtocol

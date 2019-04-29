@@ -6,7 +6,6 @@
 //  Copyright © 2019 lyksa. All rights reserved.
 //
 
-import UIKit
 import RxSwift
 import RxCocoa
 
